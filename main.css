@@ -45,12 +45,18 @@
 }
 
 .black-background {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,.7);
   position: fixed;
   z-index: 5;
   width: 100%;
   height: 100%;
-  display: none;
+  display: block;
+  transition: all 1s;
+  transform: translateY(-100%);
+}
+
+.slide-down {
+  transform: translateY(0%);
 }
 
 .white-background {
@@ -59,20 +65,13 @@
   margin: 100px auto;
   padding: 20px;
   border-radius: 10px;
+  
 }
 
 .white-background p {
   font-size: 18px;
   margin: auto 0px;
 }
-
-/* .closeBtn {
-  border: 0;
-  border-radius: 5px;
-  padding: 7px 12.4px;
-  background-color: #F84949;
-  color: #fff;
-} */
 
 .nav-menu {
   display: flex;
@@ -99,4 +98,25 @@
   color: red;
   margin-left: 5px;
   font-size: 14px;
+}
+
+.left-menu {
+  width: 200px;
+  height: 100%;
+  background-color: #000;
+  color: white;
+  position: fixed;
+  margin-left: -200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.left-menu-close {
+  background-color: rgba(0,0,0,0);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  align-self: flex-start;
 }

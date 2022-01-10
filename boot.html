@@ -29,7 +29,12 @@
           <button id="close" class="btn btn-danger">닫기</button>
         </form>
       </div>
-    </div> 
+    </div>
+
+    <div class="left-menu">
+      <p>Menu Title</p>
+      <button class="left-menu-close">X</button>
+    </div>
 
     <div class="nav-menu">
       <h4>Football Studio</h4>
@@ -46,10 +51,11 @@
 
     <div class="jumbotron main-background">
       <h1 class="display-4">Football Studio</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <p class="lead">..</p>
       <hr class="my-4">
-      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <p>...</p>
       <a id="login" class="btn btn-primary btn-lg" href="#" role="button">로그인</a>
+      <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button">메뉴 더보기</a>
     </div>
 
     <!-- Optional JavaScript -->
@@ -76,17 +82,13 @@
       // } console.log('다르다')
       // // 다르다 라고 콘솔에 나옴
 
-
+      
       const onLogin = () => {
-          // $('.black-background').css('display', 'block');
-          // $('.black-background').show();
-          $('.black-background').fadeIn();
+          $('.black-background').addClass('slide-down');
       }
 
       const closed = () => {
-        // $('.black-background').css('display', 'none');
-        // $('.black-background').hide();
-        $('.black-background').fadeOut();
+        $('.black-background').removeClass('slide-down');
       }
 
       const submitForm = (e) => {
@@ -110,21 +112,29 @@
           $('#pw-err').hide();
         }
       }
-
-      $('#login').click(onLogin);
-      $('form').submit(submitForm);
-      $('form').on('input', inputChange); // input은 값이 변경될 때 실행
-      // $('form').on('change', inputChange); // change는 값이 변경하고 focus를 옮기면 실행
-      $('#close').on('click', closed);
-
+      
       const onMenuClick = () => {
         // slide up/down 왔다갔다.
         // $('.nav-sub').slideToggle();
         $('.nav-sub').fadeToggle();
       }
 
+      function showMenu(){
+        $('.left-menu').animate({marginLeft: '0px'}, 1000)
+      }
 
+      function leftMenuClose() {
+        $('.left-menu').animate({marginLeft: '-200px'}, 1000)
+      }
+
+      $('#login').click(onLogin);
+      $('form').submit(submitForm);
+      $('form').on('input', inputChange); // input은 값이 변경될 때 실행
+      // $('form').on('change', inputChange); // change는 값이 변경하고 focus를 옮기면 실행
+      $('#close').on('click', closed);
       $('.nav-sub-btn').click(onMenuClick);
+      $('#show-menu').click(showMenu)
+      $('.left-menu-close').click(leftMenuClose)
 
     </script>
   </body>
