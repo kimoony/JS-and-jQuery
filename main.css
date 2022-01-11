@@ -92,8 +92,10 @@
   display: none;
 }
 
-#email-err,
-#pw-err {
+#email-err1,
+#email-err2,
+#pw-err,
+#pw-err2 {
   display: none;
   color: red;
   margin-left: 5px;

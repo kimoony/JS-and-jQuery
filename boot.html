@@ -19,11 +19,13 @@
         <form action="boot.html">
           <div class="form-group">
             <input type="email" id="email-input" class="form-control" placeholder="Email">
-            <p id="email-err">이메일이 빈 칸 입니다..</p>
+            <p id="email-err1">이메일을 입력해주세요</p>
+            <p id="email-err2">이메일 형식을 확인해주세요</p>
           </div>
           <div class="form-group">
-            <input type="password" id="pw-input" class="form-control" placeholder="Password">
-            <p id="pw-err">패스워드가 빈 칸 입니다..</p>
+            <input type="password" id="pw-input" class="form-control" placeholder="Password" minLength="8" maxlength="16">
+            <p id="pw-err">패스워드를 입력해주세요</p>
+            <p id="pw-err2">패스워드에 대문자가 포함되어야 합니다</p>
           </div>
           <button type="submit" id="submit" class="btn btn-primary">전송</button>
           <button id="close" class="btn btn-danger">닫기</button>
@@ -84,7 +86,7 @@
 
       
       const onLogin = () => {
-          $('.black-background').addClass('slide-down');
+        $('.black-background').addClass('slide-down');
       }
 
       const closed = () => {
@@ -92,20 +94,52 @@
       }
 
       const submitForm = (e) => {
-        if($('#email-input').val() === "") {
-          e.preventDefault();
-          $('#email-err').show();
-        } 
+        const userEmail = $('#email-input').val();
+        const userPw = $('#pw-input').val();
+        const emailCheck = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        // const pwCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
 
-        if ($('#pw-input').val() === "") {
+        // 정규표현식
+        if(userEmail === "") {
+          e.preventDefault();
+          $('#email-input').focus()
+          $('#email-err1').show();
+        } else if(emailCheck.test(userEmail) === false) {
+          e.preventDefault();
+          $('#email-input').focus()
+        } else {
+          $('#pw-input').focus()
+        }
+
+        if(userPw === "") {
           e.preventDefault();
           $('#pw-err').show();
+        } else if(/[A-Z]/.test(userPw) === false) {
+          e.preventDefault();
+          $('#pw-input').focus()
+          $('#pw-err2').show();
         }
+
+
+        // if($('#email-input').val() === "") {
+        //   e.preventDefault();
+        //   $('#email-err').show();
+        // } 
+
+        // if ($('#pw-input').val() === "") {
+        //   e.preventDefault();
+        //   $('#pw-err').show();
+        // }
       }
 
       const inputChange = (e) => {
-        if($('#email-input').val() !== "") {
-          $('#email-err').hide();
+        const userEmail = $('#email-input').val();
+        const emailCheck = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+        if(userEmail !== "") {
+          $('#email-err1').hide();
+        } else if(emailCheck.test(userEmail) === true) {
+          $('#email-err2').hide();
         }
 
         if($('#pw-input').val() !== "") {
