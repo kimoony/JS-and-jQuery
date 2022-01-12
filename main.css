@@ -146,6 +146,24 @@
   margin-top: 5px;
 }
 
+.slide-1,
+.slide-2,
+.slide-3 {
+  border: 0;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  padding: 5px 15px;
+}
+
+.slide-1:hover,
+.slide-2:hover,
+.slide-3:hover {
+  background-color: rgb(77, 130, 244);
+  font-weight: bold;
+}
+
+
 .slide-next {
   position: absolute;
   top: 45%;
