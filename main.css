@@ -216,6 +216,9 @@
   font-size: 18px;
 }
 
+
+
+/* tab */
 ul.list {
 	list-style-type: none;
 	margin: 0;
@@ -252,3 +255,11 @@ ul.list {
   .show {
 	display: block;
   }
+
+
+  /* input */
+/* .size-uniform-select,
+.size-shoes-select,
+.select-equipment {
+  display: none;
+} */
