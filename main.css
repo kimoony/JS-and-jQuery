@@ -78,10 +78,31 @@
   justify-content: space-between;
   padding: 15px 20px;
   align-items: center;
+  background-color: transparent;
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  color: rgb(17, 17, 223);
+  transition: all .5s;
+}
+
+.nav-white {
+  background-color: #fff;
+  padding: 5px 20px;
+  transition: all .5s;
+}
+
+.nav-white h4 {
+  font-size: 18px;
+}
+
+.nav-white a {
+  font-size: 14px;
 }
 
 .nav-menu h4 {
   margin: 0;
+  
 }
 
 .nav-sub-btn {
@@ -90,6 +111,7 @@
 
 .nav-sub {
   display: none;
+  padding-top: 50px;
 }
 
 #email-err1,
@@ -112,7 +134,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  z-index: 1;
+  z-index: 5;
 }
 
 .left-menu-close {
@@ -193,3 +215,40 @@
   font-weight: bold;
   font-size: 18px;
 }
+
+ul.list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #ccc;
+  }
+  ul.list::after {
+	content: '';
+	display: block;
+	clear: both;
+  }
+  .tab-button {
+	display: block;
+	padding: 10px 20px 10px 20px;
+	float: left;
+	margin-right: -1px;
+	margin-bottom: -1px;
+	color: grey;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  .active {
+	border-top: 2px solid blue;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid white;
+	border-left: 1px solid #ccc;
+	color: black;
+	margin-top: -2px;
+  }
+  .tab-content {
+	display: none;
+	padding: 10px;
+  }
+  .show {
+	display: block;
+  }

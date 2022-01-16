@@ -84,14 +84,14 @@
         class="btn btn-primary btn-lg" 
         href="#" 
         role="button">
-        로그인
+        Sign In
       </a>
       <a 
         id="show-menu" 
         class="btn btn-danger btn-lg" 
         href="#" 
         role="button">
-        메뉴
+        Menu
       </a>
     </div>
 
@@ -120,6 +120,26 @@
 
     <div class="my-5"></div>
 
+    <div class="container mt-5">
+      <ul class="list">
+        <li class="tab-button active" data-id="0">Products</li>
+        <li class="tab-button" data-id="1">Information</li>
+        <li class="tab-button" data-id="2">Shipping</li>
+      </ul>
+    
+      <div class="tab-content show">
+        <p>상품설명입니다. Product</p>
+      </div>
+      <div class="tab-content">
+        <p>상품정보입니다. Info</p>
+      </div>
+      <div class="tab-content">
+        <p>배송정보입니다. Shipping</p>
+      </div>
+    </div>
+
+    <script src="/tab.js"></script>
+
     <script>
 
       // // == 느슨비교
@@ -138,12 +158,24 @@
       // 로그인버튼
       const onLogin = () => {
         $('.black-background').addClass('slide-down');
+        $('.black-background').show();
       }
+      $('#login').click(onLogin);
 
       // 로그인창 닫기버튼
       const closed = () => {
         $('.black-background').removeClass('slide-down');
       }
+      $('#close').on('click', closed);
+
+      // 이벤트 버블링 해결하기
+      const closeBlack = (e) => {
+        // 실제로 클릭한 요소 === 이벤트리스너가 달린 곳
+        if(e.target === e.currentTarget) {
+          $('.black-background').hide();
+        }
+      }
+      $('.black-background').click(closeBlack);
 
       // form 전송시 유효성검사
       const submitForm = (e) => {
@@ -200,36 +232,58 @@
         }
       }
 
+      // 유효성 검사
+      $('form').submit(submitForm);
+      $('form').on('input', inputChange); // input은 값이 변경될 때 실행
+      // $('form').on('change', inputChange); // change는 값이 변경하고 focus를 옮기면 실행
+
+      // navbar scroll dwon
+      const scrollNav = () => {
+        if($(window).scrollTop() > 30) {
+          $('.nav-menu').addClass('nav-white');
+        } else {
+          $('.nav-menu').removeClass('nav-white');
+        }
+      }
+
+      $(window).on('scroll', scrollNav);
+
       // product menu
       const onMenuClick = () => {
         // slide up/down 왔다갔다.
         // $('.nav-sub').slideToggle();
-        $('.nav-sub').fadeToggle();
+        $('.nav-sub').fadeToggle()
       }
-
+      $('.nav-sub-btn').click(onMenuClick)
+      
       // left menu
-
       function showMenu(){
         $('.left-menu').animate({marginLeft: '0px'}, 1000)
       }
-
+      $('#show-menu').click(showMenu);
+      
       function leftMenuClose() {
         $('.left-menu').animate({marginLeft: '-200px'}, 1000)
       }
+      $('.left-menu-close').click(leftMenuClose);
 
       // img slide
       const slideMove1 = () => {
         const leftSlide = $(".slide-container")
         leftSlide.css("transform", "translateX(0vw)")
       }
+      $(".slide-1").click(slideMove1);
       const slideMove2 = () => {
         const leftSlide = $(".slide-container")
         leftSlide.css("transform", "translateX(-100vw)")
       }
+      $(".slide-2").click(slideMove2);
       const slideMove3 = () => {
         const leftSlide = $(".slide-container")
         leftSlide.css("transform", "translateX(-200vw)")
       }
+      $(".slide-3").click(slideMove3);
+
 
       // slide btn
       let currentImg = 1;
@@ -240,7 +294,7 @@
           console.log(currentImg)
         }
       }
-
+      
       const slidePrev = () => {        
         if(currentImg > 1) {
           $(".slide-container").css("transform", "translateX(-"+(currentImg-2)+"00vw)");
@@ -248,30 +302,6 @@
           console.log(currentImg)
         }
       }
-
-      // event 적용
-      // 로그인폼
-      $('#login').click(onLogin);
-      $('#close').on('click', closed);
-
-      // 유효성 검사
-      $('form').submit(submitForm);
-      $('form').on('input', inputChange); // input은 값이 변경될 때 실행
-      // $('form').on('change', inputChange); // change는 값이 변경하고 focus를 옮기면 실행
-
-      // nav 버튼(우상단)
-      $('.nav-sub-btn').click(onMenuClick);
-
-      // 메뉴보기
-      $('#show-menu').click(showMenu);
-      $('.left-menu-close').click(leftMenuClose);
-
-      // img slide
-      $(".slide-1").click(slideMove1);
-      $(".slide-2").click(slideMove2);
-      $(".slide-3").click(slideMove3);
-
-      // slide next, prev
       $('.slide-next').click(slideNext);
       $('.slide-prev').click(slidePrev);
 
