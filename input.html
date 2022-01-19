@@ -68,7 +68,8 @@ crossorigin="anonymous"></script>
     const uniformSize = [90, 95, 100, 105, 110];
     const shoseSize = [250, 255, 260, 265, 270, 275, 280, 285, 290];
     const selectChange = () => {
-      if($('#option1').val() === "uniform") {
+      const value = $('#option1').val();
+      if(value === "uniform") {
         $('#option2').html('');
         
         uniformSize.forEach((i) => {
@@ -79,7 +80,7 @@ crossorigin="anonymous"></script>
         // 축구용품 선택하고 다시 축구화를 선택할 때 숨겼던 것을 보여준다.
         $('.mt-4').show();
         $('#option2').show();
-      } else if($('#option1').val() === "football-shoes") {
+      } else if(value === "football-shoes") {
         $('#option2').html('');
         
         shoseSize.forEach(function(i) {
@@ -91,11 +92,54 @@ crossorigin="anonymous"></script>
         // 축구용품 선택하고 다시 축구화를 선택할 때 숨겼던 것을 보여준다.
         $('.mt-4').show();
         $('#option2').show();
-      } else if($('#option1').val() === "football-equipment") {
+      } else if(value === "football-equipment") {
         $('.mt-4').hide();
         $('#option2').hide();
+      } else {
+        $('#option2').html('');
+        $('.mt-4').show();
+        $('#option2').show();
       }
     }
+
+
+    // // 조건문 switch
+    // const selectChange2 = () => {
+    //   const value = $('#option1').val();
+    //   switch (value) {
+    //     case "uniform":
+    //       $('#option2').html('');
+          
+    //       uniformSize.forEach((i) => {
+    //         const temp = `<option>${i}</option>`;
+    //         $('#option2').append(temp);
+    //       });
+
+    //       // 축구용품 선택하고 다시 축구화를 선택할 때 숨겼던 것을 보여준다.
+    //       $('.mt-4').show();
+    //       $('#option2').show();
+    //       break
+    //     case "football-shoes": 
+    //       $('#option2').html('');
+          
+    //       shoseSize.forEach(function(i) {
+    //         const temp = `<option>${i}</option>`;
+    //         // console.log(temp);
+    //         $('#option2').append(temp);
+    //       });
+  
+    //       // 축구용품 선택하고 다시 축구화를 선택할 때 숨겼던 것을 보여준다.
+    //       $('.mt-4').show();
+    //       $('#option2').show();
+    //       break
+    //     case "football-equipment":
+    //       $('.mt-4').hide();
+    //       $('#option2').hide();
+    //       break
+    //     default:  // else 와 같음
+    //   }
+    // }
+
 
     // select에 유니폼을 선택하면 밑에 ui를 보여줘
     $('#option1').on('change', selectChange)
